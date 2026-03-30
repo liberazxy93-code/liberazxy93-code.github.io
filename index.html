@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简介 | 投行专业人士</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, 'Microsoft YaHei', sans-serif;
+        }
+        :root {
+            --ib-dark: #0A192F;
+            --ib-gold: #D4AF37;
+            --ib-gray: #8892B0;
+            --ib-light: #F8F9FA;
+            --ib-white: #FFFFFF;
+            --transition: all 0.3s ease;
+        }
+        body {
+            background-color: var(--ib-light);
+            color: var(--ib-dark);
+            line-height: 1.6;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 25, 47, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .logo {
+            color: var(--ib-white);
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .logo span {
+            color: var(--ib-gold);
+        }
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+        .nav-links a {
+            color: var(--ib-white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        .nav-links a:hover {
+            color: var(--ib-gold);
+        }
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            background: linear-gradient(rgba(10,25,47,0.9), rgba(10,25,47,0.95)), url('https://images.unsplash.com/photo-1535224206242-487f7090b5bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--ib-white);
+        }
+        .hero-content {
+            max-width: 800px;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        .hero h1 span {
+            color: var(--ib-gold);
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--ib-gray);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+        .section {
+            padding: 8rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--ib-gold);
+            display: inline-block;
+            color: var(--ib-dark);
+        }
+        .experience-card {
+            background: var(--ib-white);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-radius: 4px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--ib-gold);
+            transition: var(--transition);
+        }
+        .experience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        .experience-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        .experience-date {
+            color: var(--ib-gray);
+            font-size: 0.9rem;
+        }
+        .experience-company {
+            color: var(--ib-dark);
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+        }
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        .case-card {
+            background: var(--ib-white);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+        .case-card:hover {
+            transform: translateY(-5px);
+        }
+        .case-content {
+            padding: 2rem;
+        }
+        .case-type {
+            color: var(--ib-gold);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+        .case-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        .case-desc {
+            color: var(--ib-gray);
+            font-size: 0.95rem;
+        }
+        .analysis-item {
+            background: var(--ib-white);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-radius: 4px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .analysis-date {
+            color: var(--ib-gold);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        .analysis-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        .analysis-content {
+            color: var(--ib-gray);
+        }
+        .links-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        .link-item {
+            background: var(--ib-white);
+            padding: 1.5rem 2rem;
+            border-radius: 4px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .link-item:hover {
+            background: var(--ib-dark);
+            color: var(--ib-white);
+        }
+        .link-item a {
+            color: var(--ib-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        .link-item:hover a {
+            color: var(--ib-gold);
+        }
+        .footer {
+            background: var(--ib-dark);
+            color: var(--ib-gray);
+            text-align: center;
+            padding: 3rem 5%;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1.2rem;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .cases-grid {
+                grid-template-columns: 1fr;
+            }
+            .experience-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">个人<span>简介</span></div>
+        <div class="nav-links">
+            <a href="#experience">从业经历</a>
+            <a href="#cases">项目案例</a>
+            <a href="#analysis">行业分析</a>
+            <a href="#links">内容分享</a>
+        </div>
+    </nav>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>专业投行人士<br><span>个人简介</span></h1>
+            <p>专注资本市场、企业融资、并购重组与行业深度研究，以专业视角赋能价值发现</p>
+        </div>
+    </section>
+    <section id="experience" class="section">
+        <h2 class="section-title">个人从业经历</h2>
+        <div class="experience-card">
+            <div class="experience-header">
+                <div class="experience-title">投资银行部 副总裁</div>
+                <div class="experience-date">2020.03 - 至今</div>
+            </div>
+            <div class="experience-company">某头部券商 / 国际投资银行</div>
+            <p>负责企业IPO、再融资、并购重组等投行核心业务，主导完成多家企业资本市场融资项目，累计交易规模超50亿元。</p>
+        </div>
+        <div class="experience-card">
+            <div class="experience-header">
+                <div class="experience-title">投资银行部 高级经理</div>
+                <div class="experience-date">2017.07 - 2020.02</div>
+            </div>
+            <div class="experience-company">中型券商投行部</div>
+            <p>参与股权融资、债权承销项目，负责行业研究、财务分析、尽职调查与交易执行等全流程工作。</p>
+        </div>
+    </section>
+    <section id="cases" class="section" style="background: #fff;">
+        <h2 class="section-title">目前案例</h2>
+        <div class="cases-grid">
+            <div class="case-card">
+                <div class="case-content">
+                    <div class="case-type">IPO 项目</div>
+                    <h3 class="case-title">高端制造企业创业板IPO</h3>
+                    <p class="case-desc">主导企业IPO全流程服务，包括改制辅导、申报材料制作、监管沟通与发行定价，预计融资规模8亿元。</p>
+                </div>
+            </div>
+            <div class="case-card">
+                <div class="case-content">
+                    <div class="case-type">并购重组</div>
+                    <h3 class="case-title">新能源行业产业链并购</h3>
+                    <p class="case-desc">担任买方财务顾问，完成标的筛选、估值建模、交易结构设计与并购融资方案落地。</p>
+                </div>
+            </div>
+            <div class="case-card">
+                <div class="case-content">
+                    <div class="case-type">再融资</div>
+                    <h3 class="case-title">上市公司定向增发</h3>
+                    <p class="case-desc">负责定增方案设计、投资者路演与发行承销，助力上市公司优化资本结构，扩大业务规模。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="analysis" class="section">
+        <h2 class="section-title">行业分析</h2>
+        <div class="analysis-item">
+            <div class="analysis-date">2026年一季度</div>
+            <h3 class="analysis-title">2026年资本市场投资策略与宏观展望</h3>
+            <div class="analysis-content">
+                <p>全球货币政策进入宽松周期，国内经济稳步复苏，高端制造、新能源、人工智能等赛道具备长期投资价值。注册制改革持续深化，投行专业化、精品化成为行业趋势，企业融资效率显著提升。</p>
+            </div>
+        </div>
+        <div class="analysis-item">
+            <div class="analysis-date">行业深度研究</div>
+            <h3 class="analysis-title">新能源产业链投资逻辑与估值分析</h3>
+            <div class="analysis-content">
+                <p>碳中和目标下，新能源行业长期成长确定性高，上游资源、中游制造、下游应用均存在结构性机会。重点关注技术迭代、成本控制与全球化布局能力，规避产能过剩与同质化竞争风险。</p>
+            </div>
+        </div>
+    </section>
+    <section id="links" class="section" style="background: #fff;">
+        <h2 class="section-title">外部内容分享</h2>
+        <div class="links-list">
+            <div class="link-item">
+                <span>证监会 · 资本市场政策最新解读</span>
+                <a href="https://www.csrc.gov.cn" target="_blank">立即查看</a>
+            </div>
+            <div class="link-item">
+                <span>华尔街见闻 · 全球金融市场资讯</span>
+                <a href="https://www.wallstreetcn.com" target="_blank">立即查看</a>
+            </div>
+            <div class="link-item">
+                <span>清科研究 · 私募股权与并购行业报告</span>
+                <a href="https://www.zero2ipo.com.cn" target="_blank">立即查看</a>
+            </div>
+            <div class="link-item">
+                <span>Wind · 金融数据与行业研究平台</span>
+                <a href="https://www.wind.com.cn" target="_blank">立即查看</a>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <p>&copy; 2026 个人投行简介 | 专业创造价值</p>
+    </footer>
+</body>
+</html>
